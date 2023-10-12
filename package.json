@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "@openzeppelin/contracts": "^4.8.1",
+    "@openzeppelin/test-helpers": "^0.5.16",
+    "chai-as-promised": "^7.1.1",
+    "mathjs": "^11.11.2",
+    "web3": "^4.1.2"
+  }
+}
