@@ -2,8 +2,8 @@
  
 # Initial
 Project build một SC theo chuẩn ERC20 có tính năng
-* Khởi tạo SC với name = Ami Cat,  symbol = AMI, người khởi tạo SC sẽ được mint sẵn 5000 * 10 ** 18 token
-* Giới hạn max token của SC là 10000000 * 10 ** 18
+* Khởi tạo SC với name = Ami Cat,  symbol = AMI, người khởi tạo SC sẽ được mint sẵn 5000 token
+* Giới hạn max token của SC là 10.000.000
 
 
 # Unit test
