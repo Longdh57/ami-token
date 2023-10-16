@@ -49,3 +49,6 @@ report
 
 # Ide
 .idea
+
+# ENV
+.env
