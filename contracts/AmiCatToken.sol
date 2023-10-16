@@ -7,7 +7,7 @@ import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 contract AmiCatToken is ERC20 {
     address private _owner;
     uint256 private _ownerTokenInitial = 5000 * 10**decimals();
-    uint256 private maxSupply = 10000000 * 10**decimals();
+    uint256 public constant MAX_SUPPLY = 10000000 * 10 ** 18;
 
     event TokenMinted(address indexed _from, uint256 _value);
 
@@ -31,14 +31,14 @@ contract AmiCatToken is ERC20 {
      * if totalSupply/maxSupply 90% - 95% 1AMI = 0.1ETH
      * if totalSupply/maxSupply 95% - 100% 1AMI = 1ETH
      */
-    function _minFee(uint256 amount) view  private returns (uint256) {
-        if (super.totalSupply() < (maxSupply * 50) / 100) {
+    function _minFee(uint256 amount) private view returns (uint256) {
+        if (super.totalSupply() < (MAX_SUPPLY * 50) / 100) {
             return amount * 1000;
-        } else if (super.totalSupply() < (maxSupply * 70) / 100) {
+        } else if (super.totalSupply() < (MAX_SUPPLY * 70) / 100) {
             return amount * 200;
-        } else if (super.totalSupply() < (maxSupply * 90) / 100) {
+        } else if (super.totalSupply() < (MAX_SUPPLY * 90) / 100) {
             return amount * 100;
-        } else if (super.totalSupply() < (maxSupply * 95) / 100) {
+        } else if (super.totalSupply() < (MAX_SUPPLY * 95) / 100) {
             return amount * 10;
         } else {
             return amount;
@@ -54,7 +54,10 @@ contract AmiCatToken is ERC20 {
 
         uint256 amount = _minFee(msg.value);
 
-        require((super.totalSupply() + amount) <= maxSupply, "Over max supply");
+        require(
+            (super.totalSupply() + amount) <= MAX_SUPPLY,
+            "Over max supply"
+        );
 
         super._mint(msg.sender, amount);
 
